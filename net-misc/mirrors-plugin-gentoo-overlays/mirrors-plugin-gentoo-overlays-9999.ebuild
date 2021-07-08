@@ -20,7 +20,13 @@ RDEPEND="net-misc/mirrors[mirrors_advertiser_httpdir,mirrors_advertiser_rsync]
 DEPEND=""
 
 pkg_extra_files() {
-	echo "/var/lib/mirrors/gentoo-overlays-*/***"
-	echo "/var/cache/mirrors/gentoo-overlays-*/***"
-	echo "/var/log/mirrors/mirror-site-gentoo-overlays-*/***"
+	for fn in `find '/var/lib/mirrors' -maxdepth 1 -type f -name 'gentoo-overlays-*'` ; do
+		echo "${fn}/***"
+	done
+	for fn in `find '/var/cache/mirrors' -maxdepth 1 -type f -name 'gentoo-overlays-*'` ; do
+		echo "${fn}/***"
+	done
+	for fn in `find '/var/log/mirrors' -maxdepth 1 -type f -name 'mirror-site-gentoo-overlays-*'` ; do
+		echo "${fn}/***"
+	done
 }
